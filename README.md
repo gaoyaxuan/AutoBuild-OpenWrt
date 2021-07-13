@@ -8,8 +8,8 @@ IP：10.0.0.1   密码：password
 openssh替换了dropbear, nginx和uhttpd同时存在,默认nginx.   
 
 
-![avatar](picture/img.png)
+![avatar](images/img.png)
 
-![avatar](picture/img_1.png)
+![avatar](images/img_1.png)
 
-![avatar](picture/img_2.png)
+![avatar](images/img_2.png)
