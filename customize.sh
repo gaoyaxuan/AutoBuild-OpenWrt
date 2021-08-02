@@ -12,5 +12,5 @@ cp -f files/60_nginx-luci-support   feeds/packages/net/nginx/files-luci-support/
 
 
 #openssh 更改PermitRootLogin yes
-code='sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g" $(1)/etc/ssh/sshd_config'
+code='\\tsed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g"  $(1)/etc/ssh/sshd_config'
 `sed -i "227a\${code}" feeds/packages/net/openssh/Makefile`
