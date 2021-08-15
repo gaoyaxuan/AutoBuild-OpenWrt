@@ -102,7 +102,7 @@ jobs:
       timeout-minutes: 900
       run: |
         echo -e "$(nproc) thread build."
-        make -j1 V=s
+        make -j$(nproc) V=s
 
     - name: Gzip
       run: |
