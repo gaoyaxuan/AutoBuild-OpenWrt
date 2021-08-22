@@ -9,6 +9,6 @@ cp -f files/430-e_devcrypto-make-the-dev-crypto-engine-dynamic.patch  openwrt/pa
 cp -f files/60_nginx-luci-support   openwrt/feeds/packages/net/nginx/files-luci-support/60_nginx-luci-support
 
 
-#openssh 更改PermitRootLogin yes
+#openssh 更改PermitRootLogin yes2
 code='\\tsed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g"  $(1)/etc/ssh/sshd_config'
 `sed -i "227a\${code}" openwrt/feeds/packages/net/openssh/Makefile`
