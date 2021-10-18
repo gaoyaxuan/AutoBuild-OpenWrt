@@ -62,12 +62,17 @@ jobs:
         REPO_URL: https://github.com/coolsnowwolf/lede
         REPO_BRANCH: master
       run: |
-        git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+        # 需要回退插件版本,移除 --depth 1 参数
+        git clone  $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
         echo "src-git docker https://github.com/lisaac/luci-lib-docker.git" >> ./feeds.conf.default
         echo "src-git dockerman https://github.com/lisaac/luci-app-dockerman.git" >> ./feeds.conf.default
         echo "src-git kenzok https://github.com/kenzok8/openwrt-packages" >> ./feeds.conf.default
         echo "src-git small https://github.com/kenzok8/small" >> ./feeds.conf.default
+        # 替换成下载所有历史
+        sed -i "s/src-git/src-git-full/g"  ./feeds.conf.default
+        #删掉
+        rm -rf feeds/kenzok/luci-app-pushbot/
 
     - name: Import external feeds
       working-directory: ./openwrt
