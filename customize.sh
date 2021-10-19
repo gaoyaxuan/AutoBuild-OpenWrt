@@ -19,4 +19,4 @@ code='\\tsed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g"  $(
 
 
 
-cd "#script_dir"
+cd "$script_dir"
