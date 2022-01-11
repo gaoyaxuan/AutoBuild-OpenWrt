@@ -71,14 +71,15 @@ jobs:
         echo "src-git small https://github.com/kenzok8/small" >> ./feeds.conf.default
         # 替换成下载所有历史
         sed -i "s/src-git/src-git-full/g"  ./feeds.conf.default
-        #删掉
-        rm -rf feeds/kenzok/luci-app-pushbot/
+
 
     - name: Import external feeds
       working-directory: ./openwrt
       run: |
         git clone https://github.com/destan19/OpenAppFilter.git  package/OpenAppFilter/
-        git clone https://github.com/project-lede/luci-app-godproxy.git  package/luci-app-godproxy/
+        git clone https://github.com/iwrt/luci-app-ikoolproxy  package/luci-app-ikoolproxy/
+        #使用自己修改的luci-app-pushbot
+        rm -rf feeds/kenzok/luci-app-pushbot/
         git clone https://github.com/gaoyaxuan/luci-app-pushbot.git  package/luci-app-pushbot/
 
     - name: Update & Install feeds
