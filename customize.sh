@@ -17,7 +17,4 @@ cd openwrt/feeds/packages && git checkout    0a23629419e267cc7e07c2f87a5301c8875
 code='\\tsed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g"  $(1)/etc/ssh/sshd_config'
 `sed -i "227a\${code}" openwrt/feeds/packages/net/openssh/Makefile`
 
-#偷换lede默认的luci-theme-argon
-cd openwrt/package/lean  && rm -rf luci-theme-argon   && git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git  &&  cd $script_dir
-
 cd "$script_dir"
