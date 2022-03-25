@@ -17,4 +17,8 @@ cd openwrt/feeds/packages && git checkout    0a23629419e267cc7e07c2f87a5301c8875
 code='\\tsed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g"  $(1)/etc/ssh/sshd_config'
 `sed -i "227a\${code}" openwrt/feeds/packages/net/openssh/Makefile`
 
+
+cd "$script_dir"
+curl 'https://raw.githubusercontent.com/WYC-2020/lede/893ba3d9e6984f90560a0f93921f651ee3ae96cf/package/kernel/mac80211/patches/rt2x00/651-rt2x00-driver-compile-with-kernel-5.15.patch' >  package/kernel/mac80211/patches/rt2x00/001-rt2x00-driver-compile-with-kernel-5.15.patch
+
 cd "$script_dir"
