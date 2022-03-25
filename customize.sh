@@ -19,6 +19,6 @@ code='\\tsed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g"  $(
 
 
 cd "$script_dir"
-curl 'https://raw.githubusercontent.com/WYC-2020/lede/893ba3d9e6984f90560a0f93921f651ee3ae96cf/package/kernel/mac80211/patches/rt2x00/651-rt2x00-driver-compile-with-kernel-5.15.patch' >  package/kernel/mac80211/patches/rt2x00/001-rt2x00-driver-compile-with-kernel-5.15.patch
+curl 'https://raw.githubusercontent.com/WYC-2020/lede/893ba3d9e6984f90560a0f93921f651ee3ae96cf/package/kernel/mac80211/patches/rt2x00/651-rt2x00-driver-compile-with-kernel-5.15.patch' >  openwrt/package/kernel/mac80211/patches/rt2x00/001-rt2x00-driver-compile-with-kernel-5.15.patch
 
 cd "$script_dir"
