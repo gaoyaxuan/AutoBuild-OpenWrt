@@ -64,7 +64,7 @@ jobs:
       run: |
         # 需要回退插件版本,移除 --depth 1 参数
         git clone  $REPO_URL -b $REPO_BRANCH openwrt
-        curl 'https://raw.githubusercontent.com/WYC-2020/lede/893ba3d9e6984f90560a0f93921f651ee3ae96cf/package/kernel/mac80211/patches/rt2x00/651-rt2x00-driver-compile-with-kernel-5.15.patch' >  openwrt/package/kernel/mac80211/patches/rt2x00/001-rt2x00-driver-compile-with-kernel-5.15.patch
+        curl -o  'openwrt/package/kernel/mac80211/patches/rt2x00/001-rt2x00-driver-compile-with-kernel-5.15.patch'  --create-dirs 'https://raw.githubusercontent.com/WYC-2020/lede/893ba3d9e6984f90560a0f93921f651ee3ae96cf/package/kernel/mac80211/patches/rt2x00/651-rt2x00-driver-compile-with-kernel-5.15.patch'
         cd openwrt
         echo "src-git docker https://github.com/lisaac/luci-lib-docker.git" >> ./feeds.conf.default
         echo "src-git dockerman https://github.com/lisaac/luci-app-dockerman.git" >> ./feeds.conf.default
