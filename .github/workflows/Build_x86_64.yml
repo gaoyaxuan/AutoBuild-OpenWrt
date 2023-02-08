@@ -35,7 +35,16 @@ jobs:
           /usr/share/dotnet \
           /etc/mysql \
           /usr/local/lib/android  \
-          /etc/php
+          /etc/php \
+          /usr/share/php*   \
+          /usr/share/mysql*    \
+          /usr/lib/google-cloud-sdk  \
+          /usr/lib/jvm   \
+          /opt/microsoft  \
+          /opt/google  \
+          /opt/opt/hostedtoolcache  \
+        
+          
         sudo -E apt-get -y purge \
           azure-cli* \
           ghc* \
