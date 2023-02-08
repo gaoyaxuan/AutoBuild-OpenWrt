@@ -43,7 +43,9 @@ jobs:
           /opt/microsoft  \
           /opt/google  \
           /opt/opt/hostedtoolcache  \
-        
+          /usr/local/share   \
+          /usr/local/graalvm  \
+          /usr/local/lib/node_modules
           
         sudo -E apt-get -y purge \
           azure-cli* \
