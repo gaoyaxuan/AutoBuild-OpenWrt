@@ -47,7 +47,8 @@ jobs:
           powershell \
           openjdk* \
           mysql* \
-          php*
+          php*  \
+          hhvm*
         sudo -E apt-get -qq update
         sudo -E apt update -y
         sudo -E apt full-upgrade -y
