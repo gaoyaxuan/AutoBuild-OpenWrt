@@ -36,18 +36,19 @@ jobs:
           /etc/mysql \
           /usr/local/lib/android  \
           /etc/php
-        sudo -E apt-get -qq -y purge \
-          azure-cli \
+        sudo -E apt-get -y purge \
+          azure-cli* \
           ghc* \
           zulu* \
+          hhvm* \
           llvm* \
-          firefox \
+          firefox* \
           google* \
           dotnet* \
-          powershell \
+          powershell* \
           openjdk* \
           mysql* \
-          php*  \
+          php*
         sudo -E apt-get -qq update
         sudo -E apt update -y
         sudo -E apt full-upgrade -y
