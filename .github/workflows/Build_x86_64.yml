@@ -97,8 +97,8 @@ jobs:
         # 需要回退插件版本,移除 --depth 1 参数
         git clone  $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
-        echo "src-git docker https://github.com/lisaac/luci-lib-docker.git" >> ./feeds.conf.default
-        echo "src-git dockerman https://github.com/lisaac/luci-app-dockerman.git" >> ./feeds.conf.default
+#        echo "src-git docker https://github.com/lisaac/luci-lib-docker.git" >> ./feeds.conf.default
+#        echo "src-git dockerman https://github.com/lisaac/luci-app-dockerman.git" >> ./feeds.conf.default
         echo "src-git kenzok https://github.com/kenzok8/openwrt-packages" >> ./feeds.conf.default
         echo "src-git small https://github.com/kenzok8/small" >> ./feeds.conf.default
         # 替换成下载所有历史
@@ -109,10 +109,10 @@ jobs:
       working-directory: ./openwrt
       run: |
         git clone https://github.com/destan19/OpenAppFilter.git  package/OpenAppFilter/
-        git clone https://github.com/iwrt/luci-app-ikoolproxy  package/luci-app-ikoolproxy/
-        #使用自己修改的luci-app-pushbot
-        rm -rf feeds/kenzok/luci-app-pushbot/
-        git clone https://github.com/gaoyaxuan/luci-app-pushbot.git  package/luci-app-pushbot/
+#        git clone https://github.com/iwrt/luci-app-ikoolproxy  package/luci-app-ikoolproxy/
+#        #使用自己修改的luci-app-pushbot
+#        rm -rf feeds/kenzok/luci-app-pushbot/
+#        git clone https://github.com/gaoyaxuan/luci-app-pushbot.git  package/luci-app-pushbot/
 
     - name: Update & Install feeds
       working-directory: ./openwrt
