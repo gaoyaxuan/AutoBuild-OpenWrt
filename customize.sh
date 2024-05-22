@@ -8,7 +8,7 @@ sed -i 's/192.168.1.1/10.0.0.1/g' openwrt/package/base-files/files/bin/config_ge
 #cd openwrt && git checkout  7436d6866f9dcc1cdf4154b4e9cee9ce9b4faf5a  package/libs/openssl/   && cd $script_dir
 
 # 默认还是使用uhttpd
-cp -f files/60_nginx-luci-support   openwrt/feeds/packages/net/nginx/files-luci-support/60_nginx-luci-support
+#cp -f files/60_nginx-luci-support   openwrt/feeds/packages/net/nginx/files-luci-support/60_nginx-luci-support
 
 #openssh 降级到8.6p1版本
 # cd openwrt/feeds/packages && git checkout    0a23629419e267cc7e07c2f87a5301c8875ef9a3   net/openssh/  && cd $script_dir
