@@ -16,7 +16,8 @@ env:
 jobs:
   Build:
     runs-on: ubuntu-latest
-
+    env:
+      CURRENT_BRANCH: ${{ needs.Toolchain.outputs.CURRENT_BRANCH }}
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -116,6 +117,10 @@ jobs:
     - name: Checkout
       run: |
         cd $GITHUB_WORKSPACE
+        git init
+        git remote add origin https://github.com/$GITHUB_REPOSITORY
+        git fetch
+        git checkout -t origin/$CURRENT_BRANCH
         # 需要回退插件版本,移除 --depth 1 参数
         git clone  $SOURCE_URL -b $SOURCE_BRANCH openwrt
         cd openwrt
