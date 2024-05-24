@@ -121,7 +121,7 @@ jobs:
         git init
         git remote add origin https://github.com/$GITHUB_REPOSITORY
         git fetch
-        git checkout -t origin/$CURRENT_BRANCH
+        git checkout -t origin/$SOURCE_BRANCH
         # 替换成下载所有历史
         #sed -i "s/src-git/src-git-full/g"  ./feeds.conf.default
 
