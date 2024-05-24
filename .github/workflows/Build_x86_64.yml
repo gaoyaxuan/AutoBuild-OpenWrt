@@ -164,6 +164,9 @@ jobs:
       run: |
         make download -j$(nproc) V=s
         make download -j$(nproc) V=s
+        echo "-------------------pwd-------------------"
+        pwd
+        echo "-------------------pwd-------------------"
 
     - name: Build firmware
       working-directory: ./openwrt
@@ -174,6 +177,9 @@ jobs:
 
     - name: Gzip
       run: |
+        echo "-------------------pwd-------------------"
+        pwd
+        echo "-------------------pwd-------------------"
         tar -czvf Openwrt.tar.gz openwrt/bin
 
     - name: Create Release
