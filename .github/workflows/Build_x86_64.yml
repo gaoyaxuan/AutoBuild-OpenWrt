@@ -5,17 +5,19 @@ on:
 #  schedule:
 #    - cron: 0 19 * * *
 
-env:
-  SOURCE_URL: https://github.com/coolsnowwolf/lede
-  SOURCE_BRANCH: master
-  CONFIG_FILE: configs/x86_64.config
-  DIY_SCRIPT: diy-script.sh
-  DIY_SRC: diy-src.sh
-  TZ: Asia/Shanghai
+
 
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-latest
+
+    env:
+      SOURCE_URL: https://github.com/coolsnowwolf/lede
+      SOURCE_BRANCH: master
+      CONFIG_FILE: configs/x86_64.config
+      DIY_SCRIPT: diy-script.sh
+      DIY_SRC: diy-src.sh
+      TZ: Asia/Shanghai
 
     steps:
     - name: Checkout
