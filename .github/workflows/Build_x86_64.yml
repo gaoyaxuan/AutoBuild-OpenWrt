@@ -5,9 +5,9 @@ on:
   release:
     types: [published]
 
-  push:
-    branches:
-      - master
+#  push:
+#    branches:
+#      - master
 
 #  schedule:
 #    - cron: 0 8 * * 5
@@ -15,9 +15,16 @@ on:
 #  watch:
 #    types: [started]
 
+env:
+  SOURCE_URL: https://github.com/coolsnowwolf/lede
+  SOURCE_BRANCH: master
+  CONFIG_FILE: configs/x86_64.config
+  DIY_SCRIPT: diy-script.sh
+  DIY_SRC: diy-src.sh
+  TZ: Asia/Shanghai
+
 jobs:
   build:
-    timeout-minutes: 1000
     runs-on: ubuntu-latest
 
     steps:
@@ -71,15 +78,17 @@ jobs:
         rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
         sudo -E apt-get -qq -y autoremove --purge
         sudo -E apt-get  -qq  clean
+        sudo timedatectl set-timezone "$TZ"
         echo "-----------------disk-------------------"
         df -Th
+        echo "-----------------disk-------------------"
         
 
     - name: Check Server Performance
       run: |
         echo "警告⚠"
         echo "分配的服务器性能有限，若选择的插件过多，务必注意CPU性能！"
-        echo -e "已知CPU型号（降序）：8370C，8272CL，8171M，E5-2673 \n"
+        echo -e "已知CPU型号（降序）：7763，8370C，8272CL，8171M，E5-2673 \n"
         echo "--------------------------CPU信息--------------------------"
         echo "CPU物理数量：$(cat /proc/cpuinfo | grep "physical id" | sort | uniq | wc -l)"
         echo -e "CPU核心信息：$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c) \n"
@@ -90,42 +99,33 @@ jobs:
         echo "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
 
     - name: Clone source code
-      env:
-        REPO_URL: https://github.com/coolsnowwolf/lede
-        REPO_BRANCH: master
       run: |
         # 需要回退插件版本,移除 --depth 1 参数
-        git clone  $REPO_URL -b $REPO_BRANCH openwrt
+        git clone  $SOURCE_URL -b $SOURCE_BRANCH openwrt
         cd openwrt
-        #echo "src-git docker https://github.com/lisaac/luci-lib-docker.git" >> ./feeds.conf.default
-        #echo "src-git dockerman https://github.com/lisaac/luci-app-dockerman.git" >> ./feeds.conf.default
-        echo "src-git kenzok https://github.com/kenzok8/openwrt-packages" >> ./feeds.conf.default
-        echo "src-git small https://github.com/kenzok8/small" >> ./feeds.conf.default
         # 替换成下载所有历史
-        sed -i "s/src-git/src-git-full/g"  ./feeds.conf.default
+        #sed -i "s/src-git/src-git-full/g"  ./feeds.conf.default
 
 
     - name: Import external feeds
       working-directory: ./openwrt
       run: |
-        #git clone https://github.com/destan19/OpenAppFilter.git  package/OpenAppFilter/
-        #git clone https://github.com/iwrt/luci-app-ikoolproxy  package/luci-app-ikoolproxy/
-        #使用自己修改的luci-app-pushbot
-        #rm -rf feeds/kenzok/luci-app-pushbot/
-        #git clone https://github.com/gaoyaxuan/luci-app-pushbot.git  package/luci-app-pushbot/
+        cp $GITHUB_WORKSPACE/$DIY_SRC   ./$DIY_SRC 
+        bash $DIY_SRC 
+
 
     - name: Update & Install feeds
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        cp $GITHUB_WORKSPACE/$DIY_SCRIPT  ./$DIY_SCRIPT
+        bash $DIY_SCRIPT
 
     - name: Configuration Customization - Build_x86_64
-      env:
-        CONFIG_FILE: 'x86_64.config'
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x ./customize.sh && ./customize.sh
+#        chmod +x ./customize.sh && ./customize.sh
         cd openwrt && make defconfig
 
     - name: Download package
