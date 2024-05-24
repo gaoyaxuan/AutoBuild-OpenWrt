@@ -4,20 +4,18 @@ on:
   workflow_dispatch:
 #  schedule:
 #    - cron: 0 19 * * *
-
+env:
+  SOURCE_URL: https://github.com/coolsnowwolf/lede
+  SOURCE_BRANCH: master
+  CONFIG_FILE: configs/x86_64.config
+  DIY_SCRIPT: diy-script.sh
+  DIY_SRC: diy-src.sh
+  TZ: Asia/Shanghai
 
 
 jobs:
   Build:
     runs-on: ubuntu-latest
-
-    env:
-      SOURCE_URL: https://github.com/coolsnowwolf/lede
-      SOURCE_BRANCH: master
-      CONFIG_FILE: configs/x86_64.config
-      DIY_SCRIPT: diy-script.sh
-      DIY_SRC: diy-src.sh
-      TZ: Asia/Shanghai
 
     steps:
     - name: Checkout
@@ -118,10 +116,9 @@ jobs:
     - name: Checkout
       run: |
         cd $GITHUB_WORKSPACE
-        git init
-        git remote add origin https://github.com/$GITHUB_REPOSITORY
-        git fetch
-        git checkout -t origin/$SOURCE_BRANCH
+        # 需要回退插件版本,移除 --depth 1 参数
+        git clone  $SOURCE_URL -b $SOURCE_BRANCH openwrt
+        cd openwrt
         # 替换成下载所有历史
         #sed -i "s/src-git/src-git-full/g"  ./feeds.conf.default
 
