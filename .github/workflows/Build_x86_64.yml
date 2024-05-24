@@ -116,6 +116,11 @@ jobs:
 
     - name: Checkout
       run: |
+        echo "-------------------GITHUB_WORKSPACE-------------------"
+        echo "$GITHUB_WORKSPACE"
+        echo "pwd"
+        pwd
+        echo "-------------------GITHUB_WORKSPACE-------------------"
         cd $GITHUB_WORKSPACE
         git init
         git remote add origin https://github.com/$GITHUB_REPOSITORY
@@ -126,6 +131,9 @@ jobs:
         cd openwrt
         # 替换成下载所有历史
         #sed -i "s/src-git/src-git-full/g"  ./feeds.conf.default
+        echo "-------------------pwd-------------------"
+        pwd
+        echo "-------------------pwd-------------------"
 
 
     - name: Import external feeds
@@ -140,6 +148,9 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        echo "-------------------pwd-------------------"
+        pwd
+        echo "-------------------pwd-------------------"
         cp $GITHUB_WORKSPACE/$DIY_SCRIPT  ./$DIY_SCRIPT
         bash $DIY_SCRIPT
 
