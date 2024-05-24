@@ -34,7 +34,8 @@ sed -i "s/${orig_version}/R${date_version} by gaoyaxuan/g" package/lean/default-
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/model/cbi/v2ray_server/*.lua
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/view/v2ray_server/*.htm
 
-
+code='\\tsed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g"  $(1)/etc/ssh/sshd_config'
+`sed -i "227a\${code}" openwrt/feeds/packages/net/openssh/Makefile`
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
