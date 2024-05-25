@@ -163,6 +163,8 @@ jobs:
       working-directory: ./openwrt
       timeout-minutes: 900
       run: |
+        mkdir -p files/etc/uci-defaults
+        cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
         echo -e "$(nproc) thread build."
         make -j$(nproc) V=s
 

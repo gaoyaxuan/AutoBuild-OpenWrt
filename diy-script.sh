@@ -10,7 +10,7 @@
 # sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
 
 # 更改 Argon 主题背景
-cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg2.jpg
+cp -f $GITHUB_WORKSPACE/images/bg2.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
 
 # x86 型号只显示 CPU 型号
@@ -34,8 +34,6 @@ sed -i "s/${orig_version}/R${date_version} by gaoyaxuan/g" package/lean/default-
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/model/cbi/v2ray_server/*.lua
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/view/v2ray_server/*.htm
 
-code='\\tsed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g"  $(1)/etc/ssh/sshd_config'
-`sed -i "227a\${code}" openwrt/feeds/packages/net/openssh/Makefile`
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
