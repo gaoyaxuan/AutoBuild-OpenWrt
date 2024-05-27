@@ -20,7 +20,7 @@ jobs:
       CURRENT_BRANCH: ${{ github.ref_name }}
     steps:
     - name: Checkout
-      uses: actions/checkout@"${CURRENT_BRANCH}"
+      uses: actions/checkout@main
 
     - name: Initialization environment
       env:
@@ -117,9 +117,10 @@ jobs:
     - name: Checkout
       run: |
         echo "-------------------GITHUB_WORKSPACE-------------------"
-        echo "$GITHUB_WORKSPACE"
+        echo " GITHUB_WORKSPACE:$GITHUB_WORKSPACE"
         echo "pwd"
         pwd
+        echo "CURRENT_BRANCH: $CURRENT_BRANCH"
         echo "-------------------GITHUB_WORKSPACE-------------------"
         cd $GITHUB_WORKSPACE
         git init
