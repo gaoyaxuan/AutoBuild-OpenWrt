@@ -17,16 +17,15 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     env:
-      CURRENT_BRANCH: ${{ needs.Toolchain.outputs.CURRENT_BRANCH }}
+      CURRENT_BRANCH: ${{ github.ref_name }}
     steps:
     - name: Checkout
-      uses: actions/checkout@master
+      uses: actions/checkout@"${CURRENT_BRANCH}"
 
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        echo "github.ref_name:  ${{github.ref_name}}"
         set +e
         docker rmi `docker images -q`
         echo "Deleting files, please wait ..."
@@ -126,7 +125,7 @@ jobs:
         git init
         git remote add origin https://github.com/$GITHUB_REPOSITORY
         git fetch
-        git checkout -t origin/master
+        git checkout -t origin/${CURRENT_BRANCH}
         # 需要回退插件版本,移除 --depth 1 参数
         git clone  $SOURCE_URL -b $SOURCE_BRANCH openwrt
         cd openwrt
