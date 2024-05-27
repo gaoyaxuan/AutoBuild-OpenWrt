@@ -26,6 +26,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        echo "github.ref_name:  ${{github.ref_name}}"
         set +e
         docker rmi `docker images -q`
         echo "Deleting files, please wait ..."
