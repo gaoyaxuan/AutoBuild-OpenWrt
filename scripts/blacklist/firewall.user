@@ -5,4 +5,7 @@ if which ipset > /dev/null; then
     fi
     iptables -D INPUT -m set --match-set ${IPSET_NAME} src -j DROP
     iptables -I INPUT -m set --match-set ${IPSET_NAME} src -j DROP
+#   iptables -D DOCKER-USER -m set --match-set ${IPSET_NAME} src -j DROP
+#   iptables -I DOCKER-USER -m set --match-set ${IPSET_NAME} src -j DROP
+
 fi
