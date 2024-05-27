@@ -123,6 +123,9 @@ jobs:
         echo "CURRENT_BRANCH: $CURRENT_BRANCH"
         echo "-------------------GITHUB_WORKSPACE-------------------"
         cd $GITHUB_WORKSPACE
+        echo "-------------------GITHUB_WORKSPACE2-------------------"
+        ls -al
+        echo "-------------------GITHUB_WORKSPACE2-------------------"
         git init
         git remote add origin https://github.com/$GITHUB_REPOSITORY
         git fetch
