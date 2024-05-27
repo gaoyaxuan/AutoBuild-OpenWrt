@@ -19,14 +19,19 @@ openssh_config="/etc/ssh/sshd_config"
 
 if [ -e "$openssh_config" ]; then
     sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' $openssh_config
-else
-    echo "文件不存在"
 fi
 
 #code='\\tsed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g"  $(1)/etc/ssh/sshd_config'
 #`sed -i "227a\${code}" openwrt/feeds/packages/net/openssh/Makefile`
 
-
+#Firewall屏蔽
+if which ipset > /dev/null; then
+      cat /etc/blacklist/firewall.user >> /etc/firewall.user
+      sed -i '/exit/i\bash  /etc/blacklist/create_blacklist_ipset.sh' /etc/rc.local
+      chown -R root:root /etc/blacklist
+      chmod -R 644 /etc/blacklist/
+      chmod +x /etc/rc.local
+fi
 
 
 exit 0
