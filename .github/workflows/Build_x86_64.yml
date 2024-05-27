@@ -182,6 +182,8 @@ jobs:
     - name: Gzip
       run: |
         tar -czvf Openwrt.tar.gz openwrt/bin
+        echo "DATE_STR=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+        
 
     - name: Create Release
       id: create_release
@@ -190,7 +192,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.run_id }}
-        release_name: Release ${{ github.run_id }}
+        release_name: Release Luci18 ${{ DATE_STR }} ${{ github.run_id }}
         draft: false
         prerelease: false
 
