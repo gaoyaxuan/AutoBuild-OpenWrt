@@ -192,7 +192,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.run_id }}
-        release_name: Release ${CURRENT_BRANCH} ${ DATE_STR } ${{ github.run_id }}
+        release_name: Release ${{ github.ref_name }} ${{ github.run_id }}
         draft: false
         prerelease: false
 
