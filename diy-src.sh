@@ -1,9 +1,9 @@
 #!/bin/bash
 
-echo "src-git packages https://github.com/coolsnowwolf/packages" > ./feeds.conf.default
-echo "src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-23.05" >> ./feeds.conf.default
-echo "src-git routing https://github.com/coolsnowwolf/routing" >> ./feeds.conf.default
-echo "src-git telephony https://git.openwrt.org/feed/telephony.git" >> ./feeds.conf.default
+#echo "src-git packages https://github.com/coolsnowwolf/packages" > ./feeds.conf.default
+#echo "src-git luci https://github.com/coolsnowwolf/luci.git;openwrt-23.05" >> ./feeds.conf.default
+#echo "src-git routing https://github.com/coolsnowwolf/routing" >> ./feeds.conf.default
+#echo "src-git telephony https://git.openwrt.org/feed/telephony.git" >> ./feeds.conf.default
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
@@ -33,7 +33,8 @@ rm -rf feeds/luci/applications/luci-app-serverchan
 
 # 添加额外插件
 #git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
-git clone --depth=1 https://github.com/tty228/luci-app-wechatpush package/luci-app-serverchan
+git clone --depth=1 -b openwrt-18.06 https://github.com/tty228/luci-app-wechatpush package/luci-app-serverchan
+git clone --depth=1  https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
 #git clone --depth=1 https://github.com/ilxp/luci-app-ikoolproxy package/luci-app-ikoolproxy
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
