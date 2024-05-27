@@ -166,6 +166,7 @@ jobs:
       run: |
         mkdir -p files/etc/uci-defaults
         cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
+        cp -r $GITHUB_WORKSPACE/scripts/blacklist  files/etc/
         echo -e "$(nproc) thread build."
         make -j$(nproc) V=s
 
