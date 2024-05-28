@@ -27,7 +27,7 @@ fi
 #Firewall屏蔽
 if which ipset > /dev/null; then
       cat /etc/blacklist/firewall.user >> /etc/firewall.user
-      sed -i '/exit/i\bash  /etc/blacklist/create_blacklist_ipset.sh' /etc/rc.local
+      sed -i '/exit/i\sh  /etc/blacklist/create_blacklist_ipset.sh' /etc/rc.local
       chown -R root:root /etc/blacklist
       chmod -R 644 /etc/blacklist/
       chmod +x /etc/rc.local
