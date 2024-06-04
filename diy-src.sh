@@ -5,6 +5,7 @@
 #echo "src-git routing https://github.com/coolsnowwolf/routing" >> ./feeds.conf.default
 #echo "src-git telephony https://git.openwrt.org/feed/telephony.git" >> ./feeds.conf.default
 
+echo 'src-git istore https://github.com/linkease/istore;main' >> feeds.conf.default
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
@@ -21,8 +22,9 @@ function git_sparse_clone() {
 
 
 # 移除要替换的包
-#rm -rf feeds/packages/net/mosdns
-#rm -rf feeds/packages/net/msd_lite
+rm -rf feeds/packages/net/mosdns
+rm -rf feeds/luci/applications/luci-app-mosdns
+rm -rf feeds/packages/net/msd_lite
 #rm -rf feeds/packages/net/smartdns
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/themes/luci-theme-argon-mod
@@ -42,6 +44,14 @@ git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFil
 #git_sparse_clone main https://github.com/Lienol/openwrt-package luci-app-filebrowser luci-app-ssr-mudb-server
 #git_sparse_clone openwrt-18.06 https://github.com/immortalwrt/luci applications/luci-app-eqos
 # git_sparse_clone master https://github.com/syb999/openwrt-19.07.1 package/network/services/msd_lite
+
+# MosDNS
+git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
+
+# msd_lite
+git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
+git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
+
 
 # 科学上网插件
 git clone --depth=1  https://github.com/fw876/helloworld package/luci-app-ssr-plus
