@@ -24,6 +24,13 @@ fi
 #code='\\tsed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g"  $(1)/etc/ssh/sshd_config'
 #`sed -i "227a\${code}" openwrt/feeds/packages/net/openssh/Makefile`
 
+
+if  command -v bash >/dev/null 2>&1; then
+    # 更改默认 Shell 为 bash
+    cp /etc/passwd /etc/passwd.bk
+    sed -i 's/root:\/bin\/ash/root:\/bin\/bash/g' /etc/passwd
+fi
+
 #Firewall屏蔽
 if which ipset > /dev/null; then
       cat /etc/blacklist/firewall.user >> /etc/firewall.user
