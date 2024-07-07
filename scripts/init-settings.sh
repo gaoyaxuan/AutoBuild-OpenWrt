@@ -40,5 +40,9 @@ if which ipset > /dev/null; then
       chmod +x /etc/rc.local
 fi
 
+#取消samba自动共享目录
+if [ -e '/etc/hotplug.d/block/20-smb' ]; then
+  rm /etc/hotplug.d/block/20-smb
+fi
 
 exit 0
