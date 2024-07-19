@@ -132,7 +132,14 @@ jobs:
         cd openwrt
         # 替换成下载所有历史
         #sed -i "s/src-git/src-git-full/g"  ./feeds.conf.default
+        
 
+    - name: change kernel version
+      working-directory: ./openwrt
+      run: |
+        cp $GITHUB_WORKSPACE/change-kernel-version.sh   ./change-kernel-version.sh
+        bash change-kernel-version.sh
+        
 
     - name: Import external feeds
       working-directory: ./openwrt
