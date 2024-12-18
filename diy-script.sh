@@ -10,7 +10,7 @@
 # sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
 
 # 更改 Argon 主题背景
-cp -f $GITHUB_WORKSPACE/images/bg2.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+#cp -f $GITHUB_WORKSPACE/images/bg2.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
 
 # x86 型号只显示 CPU 型号

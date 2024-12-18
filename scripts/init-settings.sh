@@ -21,9 +21,6 @@ if [ -e "$openssh_config" ]; then
     sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' $openssh_config
 fi
 
-#code='\\tsed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g"  $(1)/etc/ssh/sshd_config'
-#`sed -i "227a\${code}" openwrt/feeds/packages/net/openssh/Makefile`
-
 
 if  command -v bash >/dev/null 2>&1; then
     # 更改默认 Shell 为 bash
