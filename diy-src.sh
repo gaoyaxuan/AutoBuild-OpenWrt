@@ -29,7 +29,7 @@ function git_sparse_clone() {
 rm -rf feeds/luci/themes/luci-theme-argon
 #rm -rf feeds/luci/themes/luci-theme-argon-mod
 #rm -rf feeds/luci/themes/luci-theme-netgear
-rm -rf feeds/luci/applications/luci-app-serverchan
+#rm -rf feeds/luci/applications/luci-app-serverchan
 rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf feeds/luci/applications/luci-app-passwall2
 rm -rf feeds/luci/applications/luci-app-pushbot
@@ -37,7 +37,7 @@ rm -rf feeds/luci/applications/luci-app-pushbot
 
 # 添加额外插件
 #git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
-git clone --depth=1 https://github.com/tty228/luci-app-wechatpush package/luci-app-serverchan
+#git clone --depth=1 https://github.com/tty228/luci-app-wechatpush package/luci-app-serverchan
 git clone --depth=1  https://github.com/gaoyaxuan/luci-app-pushbot package/luci-app-pushbot
 #git clone --depth=1 https://github.com/ilxp/luci-app-ikoolproxy package/luci-app-ikoolproxy
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
