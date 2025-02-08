@@ -73,6 +73,7 @@ jobs:
         echo "-----------------disk-------------------"
         df -Th
         echo "-----------------disk-------------------"
+        echo "CURRENT_DATE=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
 
     - name: Combine Disks
       run: |
@@ -200,7 +201,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.run_id }}
-        release_name: Release ${{ github.ref_name }} ${{ github.run_id }}
+        release_name: Release ${{ github.ref_name }} ${{ env.CURRENT_DATE }}
         draft: false
         prerelease: false
 
